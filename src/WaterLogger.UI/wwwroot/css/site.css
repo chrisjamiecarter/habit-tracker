@@ -1,0 +1,67 @@
+:root {
+  --uranian-blue: #B1D5F8;
+  --uranian-blue-50: #B1D5F880;
+  --ruddy-blue: #66A9E1;
+  --light-green: #A2E07B;
+  --bittersweet: #F46E66;
+  --indigo-dye: #2C465E;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  color: var(--indigo-dye);
+  /*margin-bottom: 60px;*/
+}
+
+.background {
+  background-image: linear-gradient(var(--uranian-blue-50), var(--uranian-blue-50)), url("../img/water-logger-background.png"); /*Make background image transparent*/
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  min-height: 50rem;
+  max-height: 100rem;
+  position: relative;
+}
+
+.btn-danger {
+  background-color: var(--bittersweet);
+}
+
+.btn-primary {
+  background-color: var(--ruddy-blue);
+}
+
+.btn-success {
+  background-color: var(--light-green);
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.header {
+  background-color: var(--uranian-blue);
+}
+
+.logo {
+  width: 80px;
+  border-radius: 50%;
+}
