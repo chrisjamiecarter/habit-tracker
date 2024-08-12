@@ -1,0 +1,33 @@
+﻿using HabitTracker.Domain.Entities;
+
+namespace HabitTracker.WebUI.Models;
+
+public class HabitDto
+{
+    #region Constructor
+
+    public HabitDto()
+    {
+    }
+
+    public HabitDto(Habit model)
+    {
+        Id = model.Id;
+        Name = model.Name;
+        Measure = model.Measure;
+        IsActive = model.IsActive;
+    }
+
+    #endregion
+    #region Properties
+
+    public Guid Id { get; init; }
+
+    public string Name { get; init; }
+
+    public string Measure { get; init; }
+
+    public bool IsActive { get; init; }
+
+    #endregion
+}
