@@ -1,14 +1,19 @@
 ﻿@page
-@model HabitTracker.WebUI.Pages.CreateHabitLogModel
+@model HabitTracker.WebUI.Pages.UpdateHabitLogModel
 @{
-    ViewData["Title"] = "Create Habit Log";
+        ViewData["Title"] = "Update Habit Log";
 }
 
-<h2>Create Habit Log</h2>
+@* TODO: Show the Log that is being updated*@
+@* OR *@
+@* TODO: Prepopulate the input boxes *@
+<h2>Update Habit Log</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
+            <input type="hidden" asp-for="HabitLog!.Id" />
+            <input type="hidden" asp-for="HabitLog!.HabitId" />
             <div class="form-group">
                 <label asp-for="HabitLog!.Date" class="control-label">Date</label>
                 <input type="date" asp-for="HabitLog!.Date" class="form-control" />
@@ -20,7 +25,7 @@
                 <span asp-validation-for="HabitLog!.Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Update" class="btn btn-success" />
             </div>
         </form>
     </div>

@@ -34,6 +34,7 @@ namespace HabitTracker.WebUI.Pages
                 return Page();
             }
 
+            // TODO: What is the best practice here?
             if (HabitLog == null)
             {
                 return BadRequest(ModelState);
@@ -53,6 +54,7 @@ namespace HabitTracker.WebUI.Pages
             }
             else
             {
+                // TODO: What is the best practice here?
                 return BadRequest();
             }
         }
