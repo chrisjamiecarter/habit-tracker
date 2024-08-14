@@ -12,11 +12,34 @@ public class IndexModel : PageModel
         _habitController = habitController;
     }
 
+    public string SelectedFilter { get; set; }
+
     public IReadOnlyList<HabitDto> Habits { get; set; } = [];
 
-    public void OnGet()
+    public IReadOnlyList<HabitDto> FilteredHabits { get; set; } = [];
+
+    public void OnGet(string isActiveFilter)
     {
         Habits = GetHabits();
+
+        // Default to Active.
+        if (isActiveFilter is null)
+        {
+            isActiveFilter = "true";
+        }
+
+        SelectedFilter = isActiveFilter;
+
+        if (isActiveFilter.Equals("all"))
+        {
+            FilteredHabits = Habits;
+        }
+        else
+        {
+            var isActive = bool.Parse(isActiveFilter);
+            FilteredHabits = Habits.Where(h => h.IsActive == isActive).ToList();
+        }
+
         //ViewData["Total"] = Habits.Sum(x => x.Quantity);
         ViewData["HabitsCount"] = Habits.Count;
     }
