@@ -15,15 +15,24 @@ namespace HabitTracker.WebUI.Pages
             _habitLogController = habitLogController;
         }
 
-        [BindProperty]
-        public Guid HabitId { get; set; }
+        //[BindProperty]
+        //public Guid HabitId { get; set; }
 
         [BindProperty]
         public HabitLogDto HabitLog { get; set; }
 
         public IActionResult OnGet(Guid habitId)
         {
-            HabitId = habitId;
+            //HabitId = habitId;
+
+            // Defaults.
+            HabitLog = new HabitLogDto
+            {
+                HabitId = habitId,
+                Date = DateTime.Today,
+                Quantity = 0,
+            };
+
             return Page();
         }
 
@@ -42,7 +51,7 @@ namespace HabitTracker.WebUI.Pages
 
             var request = new CreateHabitLogRequest
             {
-                HabitId = HabitId,
+                HabitId = HabitLog.HabitId,
                 Date = HabitLog.Date,
                 Quantity = HabitLog.Quantity,
             };

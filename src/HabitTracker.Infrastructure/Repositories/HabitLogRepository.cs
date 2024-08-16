@@ -51,7 +51,7 @@ internal class HabitLogRepository : IHabitLogRepository
 
         using var command = connection.CreateCommand();
         command.CommandText = HabitLogQueries.GetHabitLog;
-        command.Parameters.Add("$Id", SqliteType.Integer).Value = id;
+        command.Parameters.Add("$Id", SqliteType.Text).Value = id;
         
         using SqliteDataReader reader = command.ExecuteReader();
         if (reader.Read())
@@ -77,7 +77,7 @@ internal class HabitLogRepository : IHabitLogRepository
 
         using var command = connection.CreateCommand();
         command.CommandText = HabitLogQueries.GetHabitLogByDate;
-        command.Parameters.Add("$HabitId", SqliteType.Integer).Value = habitId;
+        command.Parameters.Add("$HabitId", SqliteType.Text).Value = habitId;
         command.Parameters.Add("$Date", SqliteType.Text).Value = date.ToString(FormatString.ISO8601);
 
         using SqliteDataReader reader = command.ExecuteReader();
@@ -131,7 +131,7 @@ internal class HabitLogRepository : IHabitLogRepository
 
         using var command = connection.CreateCommand();
         command.CommandText = HabitLogQueries.GetHabitLogsByHabitId;
-        command.Parameters.Add("$HabitId", SqliteType.Integer).Value = habitId;
+        command.Parameters.Add("$HabitId", SqliteType.Text).Value = habitId;
 
         using SqliteDataReader reader = command.ExecuteReader();
         while (reader.Read())
@@ -184,7 +184,7 @@ internal class HabitLogRepository : IHabitLogRepository
 
         using var command = connection.CreateCommand();
         command.CommandText = HabitLogQueries.GetHabitLogsByHabitIdAndDateRange;
-        command.Parameters.Add("$HabitId", SqliteType.Integer).Value = habitId;
+        command.Parameters.Add("$HabitId", SqliteType.Text).Value = habitId;
         command.Parameters.Add("$DateFrom", SqliteType.Text).Value = from.ToString(FormatString.ISO8601);
         command.Parameters.Add("$DateTo", SqliteType.Text).Value = to.ToString(FormatString.ISO8601);
 
@@ -216,4 +216,4 @@ internal class HabitLogRepository : IHabitLogRepository
 
         return command.ExecuteNonQuery();
     }
-    }
+}
