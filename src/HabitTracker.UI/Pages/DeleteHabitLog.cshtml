@@ -27,9 +27,11 @@
         <input type="hidden" asp-for="HabitLog!.Id" />
         <input type="hidden" asp-for="HabitLog!.HabitId" />
         <input type="submit" value="Delete" class="btn btn-danger" />
-        <br />
-        <a asp-page="./Index">Back to List</a>
     </form>
+</div>
+
+<div>
+    <a asp-page="ViewHabitLogs" asp-route-habitId="@Model.HabitLog!.HabitId">Back</a>
 </div>
 
 @section Scripts {
