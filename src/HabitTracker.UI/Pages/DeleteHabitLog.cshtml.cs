@@ -17,9 +17,9 @@ namespace HabitTracker.WebUI.Pages
         [BindProperty]
         public HabitLogDto? HabitLog { get; set; }
 
-        public IActionResult OnGet(Guid id)
+        public IActionResult OnGet(Guid habitLogId)
         {
-            HabitLog = _habitLogController.GetHabitLog(id);
+            HabitLog = _habitLogController.GetHabitLog(habitLogId);
             if (HabitLog == null)
             {
                 return NotFound();
