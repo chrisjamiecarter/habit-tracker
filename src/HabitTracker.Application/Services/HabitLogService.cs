@@ -24,8 +24,8 @@ public class HabitLogService : IHabitLogService
         else
         {
             // Additional date instance. Merge.
-            habitLog.Quantity += existing.Quantity;
-            return _repository.UpdateHabitLog(habitLog);
+            existing.Quantity += habitLog.Quantity;
+            return _repository.UpdateHabitLog(existing);
         }
     }
 
