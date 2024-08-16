@@ -15,17 +15,11 @@ namespace HabitTracker.WebUI.Pages
             _habitLogController = habitLogController;
         }
 
-        //[BindProperty]
-        //public Guid HabitId { get; set; }
-
         [BindProperty]
         public HabitLogDto HabitLog { get; set; }
 
         public IActionResult OnGet(Guid habitId)
         {
-            //HabitId = habitId;
-
-            // Defaults.
             HabitLog = new HabitLogDto
             {
                 HabitId = habitId,
@@ -59,7 +53,7 @@ namespace HabitTracker.WebUI.Pages
             var result = _habitLogController.AddHabitLog(request);
             if (result)
             {
-                return RedirectToPage("./Index");
+                return RedirectToPage("./ViewHabitLogs", new { habitId = HabitLog.HabitId });
             }
             else
             {
