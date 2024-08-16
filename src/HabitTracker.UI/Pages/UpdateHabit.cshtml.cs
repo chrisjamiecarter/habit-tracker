@@ -17,13 +17,13 @@ namespace HabitTracker.WebUI.Pages
         [BindProperty]
         public HabitDto? Habit { get; set; }
 
-        public IActionResult OnGet(Guid id)
+        public IActionResult OnGet(Guid habitId)
         {
-            Habit = _habitController.GetHabit(id);
+            Habit = _habitController.GetHabit(habitId);
 
             if (Habit == null)
             {
-                BadRequest($"No Habit found with Id {id}");
+                return NotFound($"No Habit found with Id {habitId}");
             }
 
             return Page();
