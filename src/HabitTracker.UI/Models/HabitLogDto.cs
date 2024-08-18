@@ -1,4 +1,5 @@
-﻿using HabitTracker.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using HabitTracker.Domain.Entities;
 
 namespace HabitTracker.WebUI.Models;
 
@@ -25,6 +26,7 @@ public class HabitLogDto
 
     public Guid HabitId { get; set; }
 
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime Date { get; set; }
 
     public int Quantity { get; set; }

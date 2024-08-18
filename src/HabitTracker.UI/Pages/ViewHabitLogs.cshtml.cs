@@ -1,36 +1,36 @@
-using System.ComponentModel;
-using HabitTracker.Domain.Entities;
 using HabitTracker.WebUI.Controllers;
 using HabitTracker.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HabitTracker.WebUI.Pages
+namespace HabitTracker.WebUI.Pages;
+
+public class ViewHabitLogsModel : PageModel
 {
-    public class ViewHabitLogsModel : PageModel
+    private readonly IHabitController _habitController;
+    private readonly IHabitLogController _habitLogController;
+
+    public ViewHabitLogsModel(IHabitController habitController, IHabitLogController habitLogController)
     {
-        private readonly IHabitLogController _habitLogController;
+        _habitController = habitController;
+        _habitLogController = habitLogController;
+    }
 
-        public ViewHabitLogsModel(IHabitLogController habitLogController)
+    public HabitDto? Habit { get; set; }
+
+    public IReadOnlyList<HabitLogDto> HabitLogs { get; set; } = [];
+
+    public IActionResult OnGet(Guid habitId)
+    {
+        Habit = _habitController.GetHabit(habitId);
+        if (Habit is null)
         {
-            _habitLogController = habitLogController;
+            return RedirectToPage("./Error", new { errorMessage = $"No habit found with Id: {habitId}" });
         }
 
-        public Guid HabitId { get; set; }
+        HabitLogs = _habitLogController.GetHabitLogs(habitId);
+        ViewData["HabitLogsCount"] = HabitLogs.Count;
 
-        public IReadOnlyList<HabitLogDto> HabitLogs { get; set; } = [];
-
-        public void OnGet(Guid habitId)
-        {
-            HabitId = habitId;
-            HabitLogs = GetHabitLogs(habitId);
-            //ViewData["Total"] = Habits.Sum(x => x.Quantity);
-            ViewData["HabitLogsCount"] = HabitLogs.Count;
-        }
-
-        private IReadOnlyList<HabitLogDto> GetHabitLogs(Guid habitId)
-        {
-            return _habitLogController.GetHabitLogs(habitId);
-        }
+        return Page();
     }
 }

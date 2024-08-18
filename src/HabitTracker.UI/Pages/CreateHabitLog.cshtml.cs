@@ -8,18 +8,28 @@ namespace HabitTracker.WebUI.Pages
 {
     public class CreateHabitLogModel : PageModel
     {
+        private readonly IHabitController _habitController;
         private readonly IHabitLogController _habitLogController;
 
-        public CreateHabitLogModel(IHabitLogController habitLogController)
+        public CreateHabitLogModel(IHabitController habitController, IHabitLogController habitLogController)
         {
+            _habitController = habitController;
             _habitLogController = habitLogController;
         }
+
+        public HabitDto? Habit { get; set; }
 
         [BindProperty]
         public HabitLogDto HabitLog { get; set; }
 
         public IActionResult OnGet(Guid habitId)
         {
+            Habit = _habitController.GetHabit(habitId);
+            if (Habit is null)
+            {
+                return RedirectToPage("./Error", new { errorMessage = $"No habit found with Id: {habitId}" });
+            }
+
             HabitLog = new HabitLogDto
             {
                 HabitId = habitId,
@@ -37,12 +47,6 @@ namespace HabitTracker.WebUI.Pages
                 return Page();
             }
 
-            // TODO: What is the best practice here?
-            if (HabitLog == null)
-            {
-                return BadRequest(ModelState);
-            }
-
             var request = new CreateHabitLogRequest
             {
                 HabitId = HabitLog.HabitId,
@@ -57,8 +61,7 @@ namespace HabitTracker.WebUI.Pages
             }
             else
             {
-                // TODO: What is the best practice here?
-                return BadRequest();
+                return RedirectToPage("./Error", new { errorMessage = "There was an error adding the habit log to the database." });
             }
         }
     }

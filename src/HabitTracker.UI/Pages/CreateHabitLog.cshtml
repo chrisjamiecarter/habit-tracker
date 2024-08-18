@@ -1,10 +1,10 @@
 ﻿@page
 @model HabitTracker.WebUI.Pages.CreateHabitLogModel
 @{
-    ViewData["Title"] = "Create Habit Log";
+    ViewData["Title"] = "Log Habit";
 }
 
-<h2>Create Habit Log</h2>
+<h2 class="page-title">Log @Html.DisplayFor(x => x.Habit!.Name)</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,13 +22,10 @@
             </div>
             <div class="form-group">
                 <input class="btn btn-success" type="submit" value="Create" />
+                <a button type="button" class="btn btn-secondary" asp-page="ViewHabitLogs" asp-route-habitId="@Model.HabitLog.HabitId">Cancel</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {
