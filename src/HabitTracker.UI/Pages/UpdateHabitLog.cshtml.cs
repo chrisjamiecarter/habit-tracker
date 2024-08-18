@@ -1,3 +1,4 @@
+using HabitTracker.Domain.Entities;
 using HabitTracker.WebUI.Controllers;
 using HabitTracker.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,12 +8,16 @@ namespace HabitTracker.WebUI.Pages;
 
 public class UpdateHabitLogModel : PageModel
 {
+    private readonly IHabitController _habitController;
     private readonly IHabitLogController _habitLogController;
 
-    public UpdateHabitLogModel(IHabitLogController habitLogController)
+    public UpdateHabitLogModel(IHabitController habitController, IHabitLogController habitLogController)
     {
+        _habitController = habitController;
         _habitLogController = habitLogController;
     }
+
+    public HabitDto? Habit { get; set; }
 
     [BindProperty]
     public HabitLogDto? HabitLog { get; set; }
@@ -20,10 +25,15 @@ public class UpdateHabitLogModel : PageModel
     public IActionResult OnGet(Guid habitLogId)
     {
         HabitLog = _habitLogController.GetHabitLog(habitLogId);
-        
         if (HabitLog == null)
         {
-            return NotFound();
+            return RedirectToPage("./Error", new { errorMessage = $"No habit log found with Id: {habitLogId}" });
+        }
+
+        Habit = _habitController.GetHabit(HabitLog.HabitId);
+        if (Habit is null)
+        {
+            return RedirectToPage("./Error", new { errorMessage = $"No habit found with Id: {HabitLog.HabitId}" });
         }
 
         return Page();
@@ -36,15 +46,9 @@ public class UpdateHabitLogModel : PageModel
             return Page();
         }
 
-        // TODO: What is the best practice here?
-        if (HabitLog == null)
-        {
-            return BadRequest(ModelState);
-        }
-
         var request = new UpdateHabitLogRequest
         {
-            Id = HabitLog.Id,
+            Id = HabitLog!.Id,
             Date = HabitLog.Date,
             Quantity = HabitLog.Quantity,
         };
@@ -56,8 +60,7 @@ public class UpdateHabitLogModel : PageModel
         }
         else
         {
-            // TODO: What is the best practice here?
-            return BadRequest();
+            return RedirectToPage("./Error", new { errorMessage = "There was an error updating the habit log in the database." });
         }
     }
 }

@@ -1,3 +1,4 @@
+using HabitTracker.Domain.Entities;
 using HabitTracker.WebUI.Controllers;
 using HabitTracker.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,12 +8,16 @@ namespace HabitTracker.WebUI.Pages
 {
     public class DeleteHabitLogModel : PageModel
     {
+        private readonly IHabitController _habitController;
         private readonly IHabitLogController _habitLogController;
 
-        public DeleteHabitLogModel(IHabitLogController habitLogController)
+        public DeleteHabitLogModel(IHabitController habitController, IHabitLogController habitLogController)
         {
+            _habitController = habitController;
             _habitLogController = habitLogController;
         }
+
+        public HabitDto? Habit { get; set; }
 
         [BindProperty]
         public HabitLogDto? HabitLog { get; set; }
@@ -22,12 +27,16 @@ namespace HabitTracker.WebUI.Pages
             HabitLog = _habitLogController.GetHabitLog(habitLogId);
             if (HabitLog == null)
             {
-                return NotFound();
+                return RedirectToPage("./Error", new { errorMessage = $"No habit log found with Id: {habitLogId}" });
             }
-            else
+
+            Habit = _habitController.GetHabit(HabitLog.HabitId);
+            if (Habit is null)
             {
-                return Page();
+                return RedirectToPage("./Error", new { errorMessage = $"No habit found with Id: {HabitLog.HabitId}" });
             }
+
+            return Page();
         }
 
         public IActionResult OnPost()
@@ -37,21 +46,14 @@ namespace HabitTracker.WebUI.Pages
                 return Page();
             }
 
-            // TODO: What is the best practice here?
-            if (HabitLog == null)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var result = _habitLogController.DeleteHabitLog(HabitLog.Id);
+            var result = _habitLogController.DeleteHabitLog(HabitLog!.Id);
             if (result)
             {
                 return RedirectToPage("./ViewHabitLogs", new { habitId = HabitLog.HabitId });
             }
             else
             {
-                // TODO: What is the best practice here?
-                return BadRequest();
+                return RedirectToPage("./Error", new { errorMessage = "There was an error deleting the habit log from the database." });
             }
         }
     }

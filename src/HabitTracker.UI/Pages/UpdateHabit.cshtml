@@ -1,9 +1,10 @@
 ﻿@page
 @model HabitTracker.WebUI.Pages.UpdateHabitModel
 @{
+    ViewData["Title"] = "Update Habit";
 }
 
-<h2>Update Habit</h2>
+<h2 class="page-title">Update Habit</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -26,13 +27,10 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Update" class="btn btn-primary" />
+                <a button type="button" class="btn btn-secondary" asp-page="Index">Cancel</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

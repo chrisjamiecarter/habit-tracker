@@ -3,52 +3,46 @@ using HabitTracker.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HabitTracker.WebUI.Pages
+namespace HabitTracker.WebUI.Pages;
+
+public class CreateHabitModel : PageModel
 {
-    public class CreateHabitModel : PageModel
+    private readonly IHabitController _habitController;
+
+    public CreateHabitModel(IHabitController habitController)
     {
-        private readonly IHabitController _habitController;
+        _habitController = habitController;
+    }
 
-        public CreateHabitModel(IHabitController habitController)
-        {
-            _habitController = habitController;
-        }
+    public IActionResult OnGet()
+    {
+        return Page();
+    }
 
-        public IActionResult OnGet()
+    [BindProperty]
+    public HabitDto Habit { get; set; }
+
+    public IActionResult OnPost()
+    {
+        if (!ModelState.IsValid)
         {
             return Page();
         }
 
-        [BindProperty]
-        public HabitDto Habit { get; set; }
-
-        public IActionResult OnPost()
+        var request = new CreateHabitRequest
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            Name = Habit.Name,
+            Measure = Habit.Measure,
+        };
 
-            if (Habit == null)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var request = new CreateHabitRequest
-            {
-                Name = Habit.Name,
-                Measure = Habit.Measure,
-            };
-
-            var result = _habitController.AddHabit(request);
-            if (result)
-            {
-                return RedirectToPage("./Index");
-            }
-            else
-            {
-                return BadRequest();
-            }
+        var result = _habitController.AddHabit(request);
+        if (result)
+        {
+            return RedirectToPage("./Index");
+        }
+        else
+        {
+            return RedirectToPage("./Error", new { errorMessage = "There was an error adding the habit to the database." });
         }
     }
 }
