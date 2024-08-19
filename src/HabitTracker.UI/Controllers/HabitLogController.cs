@@ -49,7 +49,6 @@ public class HabitLogController : IHabitLogController
     {
         return _service.GetHabitLogs()
             .Select(x => new HabitLogDto(x))
-            .OrderBy(o => o.Date)
             .ToList();
     }
 
@@ -57,7 +56,6 @@ public class HabitLogController : IHabitLogController
     {
         return _service.GetHabitLogs(habitId)
             .Select(x => new HabitLogDto(x))
-            .OrderBy(o => o.Date)
             .ToList();
     }
 
@@ -65,7 +63,6 @@ public class HabitLogController : IHabitLogController
     {
         return _service.GetHabitLogsByDateRange(from, to)
             .Select(x => new HabitLogDto(x))
-            .OrderBy(o => o.Date)
             .ToList();
     }
 
@@ -73,7 +70,6 @@ public class HabitLogController : IHabitLogController
     {
         return _service.GetHabitLogsByDateRange(habitId, from, to)
             .Select(x => new HabitLogDto(x))
-            .OrderBy(o => o.Date)
             .ToList();
     }
 
