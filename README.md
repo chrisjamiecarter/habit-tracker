@@ -46,7 +46,7 @@ The application includes features such as filtering habits based on their status
 	- `cd src\habit-tracker-mvc\HabitTracker.WebUI`
 
 3. Configure the application:
-	- Update the connection string in `appsettings/json` if you want to change the database path that sqlite will use.
+	- Update the connection string in `appsettings.json` if you want to change the database path that sqlite will use.
 
 4. Build the application using the .NET CLI:
 	- `dotnet build`
