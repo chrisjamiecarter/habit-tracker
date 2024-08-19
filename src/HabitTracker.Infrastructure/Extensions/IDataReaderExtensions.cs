@@ -2,6 +2,9 @@
 
 namespace HabitTracker.Infrastructure.Extensions;
 
+/// <summary>
+/// Custom extensions for the System.Data.IDataReader class.
+/// </summary>
 internal static class IDataReaderExtensions
 {
     public static bool GetBoolean(this IDataReader reader, string columnName)

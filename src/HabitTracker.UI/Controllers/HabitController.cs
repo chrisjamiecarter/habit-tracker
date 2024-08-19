@@ -4,14 +4,25 @@ using HabitTracker.WebUI.Models;
 
 namespace HabitTracker.WebUI.Controllers;
 
+/// <summary>
+/// Controls all Habit specific interactions from the WebUI to the other layers.
+/// </summary>
 public class HabitController : IHabitController
 {
+    #region Fields
+
     private readonly IHabitService _service;
+
+    #endregion
+    #region Constructors
 
     public HabitController(IHabitService service)
     {
         _service = service;
     }
+
+    #endregion
+    #region Methods
 
     public bool AddHabit(CreateHabitRequest request)
     {
@@ -24,7 +35,7 @@ public class HabitController : IHabitController
         };
 
         var result = _service.AddHabit(habit);
-        return result > 0;        
+        return result > 0;
     }
 
     public HabitDto? GetHabit(Guid id)
@@ -47,7 +58,7 @@ public class HabitController : IHabitController
 
     public bool UpdateHabit(UpdateHabitRequest request)
     {
-        var habit = _service.GetHabit(request.Id);     
+        var habit = _service.GetHabit(request.Id);
         if (habit is null)
         {
             return false;
@@ -61,4 +72,5 @@ public class HabitController : IHabitController
         return result > 0;
     }
 
+    #endregion
 }

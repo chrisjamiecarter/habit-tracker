@@ -1,5 +1,8 @@
 ﻿namespace HabitTracker.Infrastructure.Queries;
 
+/// <summary>
+/// Contains all queries specific to table definitions.
+/// </summary>
 internal static class TableQueries
 {
     #region Constants

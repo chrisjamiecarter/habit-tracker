@@ -7,14 +7,25 @@ using Microsoft.Data.Sqlite;
 
 namespace HabitTracker.Infrastructure.Repositories;
 
+/// <summary>
+/// Repository class that interacts with the Habit table only.
+/// </summary>
 internal class HabitRepository : IHabitRepository
 {
+    #region Fields
+
     private readonly string _connectionString;
+
+    #endregion
+    #region Constructors
 
     public HabitRepository(IDbContext dbContext)
     {
         _connectionString = dbContext.ConnectionString;
     }
+
+    #endregion
+    #region Methods
 
     public int AddHabit(Habit habit)
     {
@@ -26,7 +37,7 @@ internal class HabitRepository : IHabitRepository
         command.Parameters.Add("$Id", SqliteType.Text).Value = habit.Id;
         command.Parameters.Add("$Name", SqliteType.Text).Value = habit.Name;
         command.Parameters.Add("$Measure", SqliteType.Text).Value = habit.Measure;
-        
+
         return command.ExecuteNonQuery();
     }
 
@@ -38,7 +49,7 @@ internal class HabitRepository : IHabitRepository
         using var command = connection.CreateCommand();
         command.CommandText = HabitQueries.GetHabit;
         command.Parameters.Add("$Id", SqliteType.Text).Value = id;
-        
+
         using var reader = command.ExecuteReader();
         if (reader.Read())
         {
@@ -91,7 +102,7 @@ internal class HabitRepository : IHabitRepository
 
         using var command = connection.CreateCommand();
         command.CommandText = HabitQueries.GetHabits;
-        
+
         using var reader = command.ExecuteReader();
         while (reader.Read())
         {
@@ -147,4 +158,6 @@ internal class HabitRepository : IHabitRepository
 
         return command.ExecuteNonQuery();
     }
+
+    #endregion
 }

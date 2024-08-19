@@ -1,6 +1,10 @@
 ﻿using HabitTracker.Domain.Entities;
 
 namespace HabitTracker.Application.Services;
+
+/// <summary>
+/// Contract for the HabitLog service.
+/// </summary>
 public interface IHabitLogService
 {
     int AddHabitLog(HabitLog habitLog);

@@ -3,32 +3,47 @@ using HabitTracker.WebUI.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HabitTracker.WebUI.Pages;
+
+/// <summary>
+/// Home Page. Displays active habits.
+/// </summary>
 public class IndexModel : PageModel
 {
+    #region Fields
+
     private readonly IHabitController _habitController;
+
+    #endregion
+    #region Constructors
 
     public IndexModel(IHabitController habitController)
     {
         _habitController = habitController;
     }
 
+    #endregion
+    #region Properties
+
     public string SelectedFilter { get; set; }
-    
+
     public string CurrentSort { get; set; }
-    
+
     public string NameSort { get; set; }
-    
+
     public string MeasureSort { get; set; }
-    
+
     public string IsActiveSort { get; set; }
 
     public IReadOnlyList<HabitDto> Habits { get; set; } = [];
 
     public IReadOnlyList<HabitDto> FilteredHabits { get; set; } = [];
 
+    #endregion
+    #region Methods
+
     public void OnGet(string isActiveFilter, string sortOrder)
     {
-        Habits = GetHabits();
+        Habits = _habitController.GetHabits();
 
         // Filter:
         if (isActiveFilter is null)
@@ -53,7 +68,7 @@ public class IndexModel : PageModel
         NameSort = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
         MeasureSort = sortOrder == "measure_asc" ? "measure_desc" : "measure_asc";
         IsActiveSort = sortOrder == "active_asc" ? "active_desc" : "active_asc";
-        
+
         FilteredHabits = sortOrder switch
         {
             "name_desc" => FilteredHabits.OrderByDescending(h => h.Name).ToList(),
@@ -67,8 +82,5 @@ public class IndexModel : PageModel
         ViewData["HabitsCount"] = Habits.Count;
     }
 
-    private IReadOnlyList<HabitDto> GetHabits()
-    {
-        return _habitController.GetHabits();
-    }
+    #endregion
 }

@@ -1,5 +1,8 @@
 ﻿namespace HabitTracker.WebUI.Models;
 
+/// <summary>
+/// Specialised model for a request to update a Habit.
+/// </summary>
 public class UpdateHabitRequest
 {
     #region Properties

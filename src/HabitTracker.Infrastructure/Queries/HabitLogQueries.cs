@@ -1,5 +1,8 @@
 ﻿namespace HabitTracker.Infrastructure.Queries;
 
+/// <summary>
+/// Contains all queries specific to the HabitLog table.
+/// </summary>
 internal static class HabitLogQueries
 {
     #region Constants
@@ -69,7 +72,7 @@ internal static class HabitLogQueries
             Date >= $DateFrom 
             AND Date <= $DateTo
         ;";
-    
+
     public static readonly string GetHabitLogsByHabitId =
         @"
         SELECT

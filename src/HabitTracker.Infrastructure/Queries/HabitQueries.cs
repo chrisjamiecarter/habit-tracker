@@ -1,5 +1,8 @@
 ﻿namespace HabitTracker.Infrastructure.Queries;
 
+/// <summary>
+/// Contains all queries specific to the Habit table.
+/// </summary>
 internal static class HabitQueries
 {
     #region Constants
@@ -57,7 +60,7 @@ internal static class HabitQueries
         WHERE
             IsActive = $IsActive
         ;";
-        
+
     public static readonly string UpdateHabit =
         @"
         UPDATE

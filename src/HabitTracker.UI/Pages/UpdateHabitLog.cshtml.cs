@@ -1,4 +1,3 @@
-using HabitTracker.Domain.Entities;
 using HabitTracker.WebUI.Controllers;
 using HabitTracker.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -6,10 +5,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HabitTracker.WebUI.Pages;
 
+/// <summary>
+/// Page that updates a HabitLog from user input.
+/// </summary>
 public class UpdateHabitLogModel : PageModel
 {
+    #region Fields
+
     private readonly IHabitController _habitController;
     private readonly IHabitLogController _habitLogController;
+
+    #endregion
+    #region Constructors
 
     public UpdateHabitLogModel(IHabitController habitController, IHabitLogController habitLogController)
     {
@@ -17,10 +24,16 @@ public class UpdateHabitLogModel : PageModel
         _habitLogController = habitLogController;
     }
 
+    #endregion
+    #region Properties
+
     public HabitDto? Habit { get; set; }
 
     [BindProperty]
     public HabitLogDto? HabitLog { get; set; }
+
+    #endregion
+    #region Methods
 
     public IActionResult OnGet(Guid habitLogId)
     {
@@ -63,4 +76,6 @@ public class UpdateHabitLogModel : PageModel
             return RedirectToPage("./Error", new { errorMessage = "There was an error updating the habit log in the database." });
         }
     }
+
+    #endregion
 }

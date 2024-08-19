@@ -1,5 +1,8 @@
 ﻿namespace HabitTracker.Domain.Entities;
 
+/// <summary>
+/// The domain level HabitLog object.
+/// </summary>
 public class HabitLog
 {
     #region Properties

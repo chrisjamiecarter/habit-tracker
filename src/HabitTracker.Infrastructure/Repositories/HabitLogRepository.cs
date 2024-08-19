@@ -8,14 +8,25 @@ using Microsoft.Data.Sqlite;
 
 namespace HabitTracker.Infrastructure.Repositories;
 
+/// <summary>
+/// Repository class that interacts with the HabitLog table only.
+/// </summary>
 internal class HabitLogRepository : IHabitLogRepository
 {
+    #region Fields
+
     private readonly string _connectionString;
+
+    #endregion
+    #region Constructors
 
     public HabitLogRepository(IDbContext dbContext)
     {
         _connectionString = dbContext.ConnectionString;
     }
+
+    #endregion
+    #region Methods
 
     public int AddHabitLog(HabitLog habitLog)
     {
@@ -52,7 +63,7 @@ internal class HabitLogRepository : IHabitLogRepository
         using var command = connection.CreateCommand();
         command.CommandText = HabitLogQueries.GetHabitLog;
         command.Parameters.Add("$Id", SqliteType.Text).Value = id;
-        
+
         using SqliteDataReader reader = command.ExecuteReader();
         if (reader.Read())
         {
@@ -216,4 +227,6 @@ internal class HabitLogRepository : IHabitLogRepository
 
         return command.ExecuteNonQuery();
     }
+
+    #endregion
 }

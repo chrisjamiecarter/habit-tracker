@@ -5,16 +5,27 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HabitTracker.WebUI.Pages;
 
+/// <summary>
+/// Page that displays a list of HabitLogs.
+/// </summary>
 public class ViewHabitLogsModel : PageModel
 {
+    #region Fields
+
     private readonly IHabitController _habitController;
     private readonly IHabitLogController _habitLogController;
+
+    #endregion
+    #region Constructors
 
     public ViewHabitLogsModel(IHabitController habitController, IHabitLogController habitLogController)
     {
         _habitController = habitController;
         _habitLogController = habitLogController;
     }
+
+    #endregion
+    #region Properties
 
     public string CurrentSort { get; set; }
 
@@ -25,6 +36,9 @@ public class ViewHabitLogsModel : PageModel
     public HabitDto? Habit { get; set; }
 
     public IReadOnlyList<HabitLogDto> HabitLogs { get; set; } = [];
+
+    #endregion
+    #region Methods
 
     public IActionResult OnGet(Guid habitId, string sortOrder)
     {
@@ -53,4 +67,6 @@ public class ViewHabitLogsModel : PageModel
 
         return Page();
     }
+
+    #endregion
 }
