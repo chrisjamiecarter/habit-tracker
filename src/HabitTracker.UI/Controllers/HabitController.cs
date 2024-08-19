@@ -40,6 +40,11 @@ public class HabitController : IHabitController
             .ToList();
     }
 
+    public bool IsUniqueHabitName(string name)
+    {
+        return _service.IsUniqueHabitName(name);
+    }
+
     public bool UpdateHabit(UpdateHabitRequest request)
     {
         var habit = _service.GetHabit(request.Id);     

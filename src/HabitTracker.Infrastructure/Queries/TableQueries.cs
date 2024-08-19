@@ -9,7 +9,7 @@ internal static class TableQueries
         CREATE TABLE IF NOT EXISTS Habit
         (
              Id TEXT PRIMARY KEY
-            ,Name TEXT NOT NULL
+            ,Name TEXT NOT NULL UNIQUE
             ,Measure TEXT NOT NULL
             ,IsActive INTEGER DEFAULT 1
         );

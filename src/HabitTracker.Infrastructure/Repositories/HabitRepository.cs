@@ -56,6 +56,32 @@ internal class HabitRepository : IHabitRepository
         }
     }
 
+    public Habit? GetHabit(string name)
+    {
+        using var connection = new SqliteConnection(_connectionString);
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+        command.CommandText = HabitQueries.GetHabitByName;
+        command.Parameters.Add("$Name", SqliteType.Text).Value = name;
+
+        using var reader = command.ExecuteReader();
+        if (reader.Read())
+        {
+            return new Habit
+            {
+                Id = reader.GetGuid("Id"),
+                Name = reader.GetString("Name"),
+                Measure = reader.GetString("Measure"),
+                IsActive = reader.GetBoolean("IsActive"),
+            };
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public List<Habit> GetHabits()
     {
         List<Habit> habits = [];

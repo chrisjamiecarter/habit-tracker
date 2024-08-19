@@ -30,6 +30,16 @@ internal static class HabitQueries
             Id = $Id
         ;";
 
+    public static readonly string GetHabitByName =
+        @"
+        SELECT 
+            * 
+        FROM
+            Habit
+        WHERE
+            Name = $Name
+        ;";
+
     public static readonly string GetHabits =
         @"
         SELECT
@@ -47,7 +57,7 @@ internal static class HabitQueries
         WHERE
             IsActive = $IsActive
         ;";
-
+        
     public static readonly string UpdateHabit =
         @"
         UPDATE

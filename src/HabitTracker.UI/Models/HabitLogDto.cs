@@ -29,6 +29,7 @@ public class HabitLogDto
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime Date { get; set; }
 
+    [Range(0, int.MaxValue, ErrorMessage = "Value for {0} cannot be a negative value.")]
     public int Quantity { get; set; }
 
     #endregion
