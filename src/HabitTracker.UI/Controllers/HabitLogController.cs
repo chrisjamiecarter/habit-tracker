@@ -29,7 +29,6 @@ public class HabitLogController : IHabitLogController
 
     public bool DeleteHabitLog(Guid id)
     {
-        // TODO: Do I need to do this?
         var habitLog = _service.GetHabitLog(id);
         if (habitLog is null)
         {
@@ -48,27 +47,38 @@ public class HabitLogController : IHabitLogController
 
     public IReadOnlyList<HabitLogDto> GetHabitLogs()
     {
-        return _service.GetHabitLogs().Select(x => new HabitLogDto(x)).ToList();
+        return _service.GetHabitLogs()
+            .Select(x => new HabitLogDto(x))
+            .OrderBy(o => o.Date)
+            .ToList();
     }
 
     public IReadOnlyList<HabitLogDto> GetHabitLogs(Guid habitId)
     {
-        return _service.GetHabitLogs(habitId).Select(x => new HabitLogDto(x)).ToList();
+        return _service.GetHabitLogs(habitId)
+            .Select(x => new HabitLogDto(x))
+            .OrderBy(o => o.Date)
+            .ToList();
     }
 
     public IReadOnlyList<HabitLogDto> GetHabitLogsByDateRange(DateTime from, DateTime to)
     {
-        return _service.GetHabitLogsByDateRange(from, to).Select(x => new HabitLogDto(x)).ToList();
+        return _service.GetHabitLogsByDateRange(from, to)
+            .Select(x => new HabitLogDto(x))
+            .OrderBy(o => o.Date)
+            .ToList();
     }
 
     public IReadOnlyList<HabitLogDto> GetHabitLogsByDateRange(Guid habitId, DateTime from, DateTime to)
     {
-        return _service.GetHabitLogsByDateRange(habitId, from, to).Select(x => new HabitLogDto(x)).ToList();
+        return _service.GetHabitLogsByDateRange(habitId, from, to)
+            .Select(x => new HabitLogDto(x))
+            .OrderBy(o => o.Date)
+            .ToList();
     }
 
     public bool UpdateHabitLog(UpdateHabitLogRequest request)
     {
-        // TODO: Do I need to do this?
         var habitLog = _service.GetHabitLog(request.Id);
         if (habitLog is null)
         {

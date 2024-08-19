@@ -35,12 +35,13 @@ public class HabitController : IHabitController
 
     public IReadOnlyList<HabitDto> GetHabits()
     {
-        return _service.GetHabits().Select(x => new HabitDto(x)).ToList();
+        return _service.GetHabits()
+            .Select(x => new HabitDto(x))
+            .ToList();
     }
 
     public bool UpdateHabit(UpdateHabitRequest request)
     {
-        // TODO: Do I need to do this?
         var habit = _service.GetHabit(request.Id);     
         if (habit is null)
         {
