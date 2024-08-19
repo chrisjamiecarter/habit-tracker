@@ -3,14 +3,25 @@ using HabitTracker.Domain.Entities;
 
 namespace HabitTracker.Application.Services;
 
+/// <summary>
+/// Implementation of the HabitLog service. Interacts with the HabitLog repository.
+/// </summary>
 public class HabitLogService : IHabitLogService
 {
+    #region Fields
+
     private readonly IHabitLogRepository _repository;
+    
+    #endregion
+    #region Constructors
 
     public HabitLogService(IHabitLogRepository repository)
     {
         _repository = repository;
     }
+
+    #endregion
+    #region Methods
 
     public int AddHabitLog(HabitLog habitLog)
     {
@@ -64,4 +75,5 @@ public class HabitLogService : IHabitLogService
         return _repository.UpdateHabitLog(habitLog);
     }
 
+    #endregion
 }

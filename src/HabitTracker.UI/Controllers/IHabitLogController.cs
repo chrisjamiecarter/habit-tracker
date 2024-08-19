@@ -1,6 +1,10 @@
 ﻿using HabitTracker.WebUI.Models;
 
 namespace HabitTracker.WebUI.Controllers;
+
+/// <summary>
+/// Contract for the HabitLogController.
+/// </summary>
 public interface IHabitLogController
 {
     bool AddHabitLog(CreateHabitLogRequest request);

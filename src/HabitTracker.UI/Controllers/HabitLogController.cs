@@ -4,14 +4,25 @@ using HabitTracker.WebUI.Models;
 
 namespace HabitTracker.WebUI.Controllers;
 
+/// <summary>
+/// Controls all Habit specific interactions from the WebUI to the other layers.
+/// </summary>
 public class HabitLogController : IHabitLogController
 {
+    #region Fields
+
     private readonly IHabitLogService _service;
+
+    #endregion
+    #region Constructors
 
     public HabitLogController(IHabitLogService service)
     {
         _service = service;
     }
+
+    #endregion
+    #region Methods
 
     public bool AddHabitLog(CreateHabitLogRequest request)
     {
@@ -87,4 +98,6 @@ public class HabitLogController : IHabitLogController
         var result = _service.UpdateHabitLog(habitLog);
         return result > 0;
     }
+
+    #endregion
 }

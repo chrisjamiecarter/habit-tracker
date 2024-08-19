@@ -2,6 +2,9 @@
 
 namespace HabitTracker.Application.Repositories;
 
+/// <summary>
+/// Contract for the HabitLog repository.
+/// </summary>
 public interface IHabitLogRepository
 {
     int AddHabitLog(HabitLog habitLog);

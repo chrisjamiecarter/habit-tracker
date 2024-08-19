@@ -5,22 +5,36 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HabitTracker.WebUI.Pages;
 
+/// <summary>
+/// Page that creates a Habit from user input.
+/// </summary>
 public class CreateHabitModel : PageModel
 {
+    #region Fields
+
     private readonly IHabitController _habitController;
+
+    #endregion
+    #region Constructors
 
     public CreateHabitModel(IHabitController habitController)
     {
         _habitController = habitController;
     }
 
+    #endregion
+    #region Properties
+
+    [BindProperty]
+    public HabitDto Habit { get; set; }
+
+    #endregion
+    #region Methods
+
     public IActionResult OnGet()
     {
         return Page();
     }
-
-    [BindProperty]
-    public HabitDto Habit { get; set; }
 
     public IActionResult OnPost()
     {
@@ -50,4 +64,6 @@ public class CreateHabitModel : PageModel
             return RedirectToPage("./Error", new { errorMessage = "There was an error adding the habit to the database." });
         }
     }
+
+    #endregion
 }

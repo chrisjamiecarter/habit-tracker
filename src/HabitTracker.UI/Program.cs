@@ -1,10 +1,12 @@
 using HabitTracker.Application.Installers;
 using HabitTracker.Infrastructure.Installers;
 using HabitTracker.WebUI.Installers;
-using Microsoft.AspNetCore.Identity;
 
 namespace HabitTracker.WebUI;
 
+/// <summary>
+/// Main insertion point for the application.
+/// </summary>
 public class Program
 {
     public static void Main(string[] args)
@@ -17,7 +19,7 @@ public class Program
         builder.Services.AddApplication();
         builder.Services.AddInfrastructure();
         builder.Services.AddWebUI();
-        
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

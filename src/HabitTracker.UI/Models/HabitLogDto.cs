@@ -3,9 +3,12 @@ using HabitTracker.Domain.Entities;
 
 namespace HabitTracker.WebUI.Models;
 
+/// <summary>
+/// DTO version of the HabitLog object.
+/// </summary>
 public class HabitLogDto
 {
-    #region Constructor
+    #region Constructors
 
     public HabitLogDto()
     {

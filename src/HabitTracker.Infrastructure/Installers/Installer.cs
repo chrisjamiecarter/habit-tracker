@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HabitTracker.Infrastructure.Installers;
 
+/// <summary>
+/// Installs all dependancies for the infrastructure project.
+/// </summary>
 public static class Installer
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)

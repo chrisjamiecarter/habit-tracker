@@ -2,6 +2,9 @@
 
 namespace HabitTracker.Application.Services;
 
+/// <summary>
+/// Contract for the Habit service.
+/// </summary>
 public interface IHabitService
 {
     int AddHabit(Habit habit);

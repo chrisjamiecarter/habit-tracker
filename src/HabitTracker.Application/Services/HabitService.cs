@@ -3,15 +3,26 @@ using HabitTracker.Domain.Entities;
 
 namespace HabitTracker.Application.Services;
 
+/// <summary>
+/// Implementation of the Habit service. Interacts with the Habit repository.
+/// </summary>
 public class HabitService : IHabitService
 {
+    #region Fields
+    
     private readonly IHabitRepository _repository;
 
+    #endregion
+    #region Constructors
+    
     public HabitService(IHabitRepository repository)
     {
         _repository = repository;
     }
 
+    #endregion
+    #region Methods
+    
     public int AddHabit(Habit habit)
     {
         return _repository.AddHabit(habit);
@@ -36,4 +47,6 @@ public class HabitService : IHabitService
     {
         return _repository.UpdateHabit(habit);
     }
+
+    #endregion
 }
