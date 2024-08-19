@@ -7,5 +7,6 @@ public interface IHabitService
     int AddHabit(Habit habit);
     Habit? GetHabit(Guid id);
     List<Habit> GetHabits();
+    bool IsUniqueHabitName(string name);
     int UpdateHabit(Habit habit);
 }

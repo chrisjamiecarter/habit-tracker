@@ -35,6 +35,11 @@ public class CreateHabitModel : PageModel
             Measure = Habit.Measure,
         };
 
+        if (!_habitController.IsUniqueHabitName(request.Name))
+        {
+            return RedirectToPage("./Error", new { errorMessage = $"A habit with the name '{Habit.Name}' already exists in the database." });
+        }
+
         var result = _habitController.AddHabit(request);
         if (result)
         {

@@ -27,6 +27,11 @@ public class HabitService : IHabitService
         return _repository.GetHabits();
     }
 
+    public bool IsUniqueHabitName(string name)
+    {
+        return _repository.GetHabit(name) is null;
+    }
+
     public int UpdateHabit(Habit habit)
     {
         return _repository.UpdateHabit(habit);
