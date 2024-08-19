@@ -1,4 +1,5 @@
-﻿using HabitTracker.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using HabitTracker.Domain.Entities;
 
 namespace HabitTracker.WebUI.Models;
 
@@ -27,6 +28,7 @@ public class HabitDto
 
     public string Measure { get; init; }
 
+    [Display(Name = "Active")]
     public bool IsActive { get; init; }
 
     #endregion
