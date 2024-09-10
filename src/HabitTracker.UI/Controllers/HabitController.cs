@@ -1,5 +1,6 @@
 ﻿using HabitTracker.Application.Services;
 using HabitTracker.Domain.Entities;
+using HabitTracker.Domain.Helpers;
 using HabitTracker.WebUI.Models;
 
 namespace HabitTracker.WebUI.Controllers;
@@ -24,7 +25,7 @@ public class HabitController : IHabitController
     #endregion
     #region Methods
 
-    public bool AddHabit(CreateHabitRequest request)
+    public ResponsePackage AddHabit(CreateHabitRequest request)
     {
         var habit = new Habit
         {
@@ -35,7 +36,7 @@ public class HabitController : IHabitController
         };
 
         var result = _service.AddHabit(habit);
-        return result > 0;
+        return result;
     }
 
     public HabitDto? GetHabit(Guid id)

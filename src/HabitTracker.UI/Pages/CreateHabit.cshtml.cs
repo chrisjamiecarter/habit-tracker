@@ -49,19 +49,18 @@ public class CreateHabitModel : PageModel
             Measure = Habit.Measure,
         };
 
-        if (!_habitController.IsUniqueHabitName(request.Name))
-        {
-            return RedirectToPage("./Error", new { errorMessage = $"A habit with the name '{Habit.Name}' already exists in the database." });
-        }
 
         var result = _habitController.AddHabit(request);
-        if (result)
+        if (result.IsSuccess)
         {
+            TempData["success"] = result.Message;
             return RedirectToPage("./Index");
         }
         else
         {
-            return RedirectToPage("./Error", new { errorMessage = "There was an error adding the habit to the database." });
+            TempData["error"] = result.Message;
+            return Page();
+
         }
     }
 

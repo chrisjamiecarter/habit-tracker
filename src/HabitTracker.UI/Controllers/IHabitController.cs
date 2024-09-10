@@ -1,4 +1,5 @@
-﻿using HabitTracker.WebUI.Models;
+﻿using HabitTracker.Domain.Helpers;
+using HabitTracker.WebUI.Models;
 
 namespace HabitTracker.WebUI.Controllers;
 
@@ -7,7 +8,7 @@ namespace HabitTracker.WebUI.Controllers;
 /// </summary>
 public interface IHabitController
 {
-    bool AddHabit(CreateHabitRequest request);
+    ResponsePackage AddHabit(CreateHabitRequest request);
     HabitDto? GetHabit(Guid id);
     IReadOnlyList<HabitDto> GetHabits();
     bool IsUniqueHabitName(string name);

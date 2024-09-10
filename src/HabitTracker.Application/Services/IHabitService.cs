@@ -1,4 +1,5 @@
 ﻿using HabitTracker.Domain.Entities;
+using HabitTracker.Domain.Helpers;
 
 namespace HabitTracker.Application.Services;
 
@@ -7,7 +8,7 @@ namespace HabitTracker.Application.Services;
 /// </summary>
 public interface IHabitService
 {
-    int AddHabit(Habit habit);
+    ResponsePackage AddHabit(Habit habit);
     Habit? GetHabit(Guid id);
     List<Habit> GetHabits();
     bool IsUniqueHabitName(string name);
