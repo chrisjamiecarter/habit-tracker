@@ -59,13 +59,16 @@ public class UpdateHabitModel : PageModel
         };
 
         var result = _habitController.UpdateHabit(request);
-        if (result)
+        if (result.IsSuccess)
         {
+            TempData["success"] = result.Message;
             return RedirectToPage("./Index");
         }
         else
         {
-            return RedirectToPage("./Error", new { errorMessage = "There was an error updating the habit in the database." });
+            TempData["error"] = result.Message;
+            return Page();
+
         }
     }
 

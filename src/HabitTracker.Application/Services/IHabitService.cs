@@ -10,6 +10,7 @@ public interface IHabitService
 {
     ResponsePackage AddHabit(Habit habit);
     Habit? GetHabit(Guid id);
+    Habit? GetHabitByName(string name);
     List<Habit> GetHabits();
     bool IsUniqueHabitName(string name);
     int UpdateHabit(Habit habit);

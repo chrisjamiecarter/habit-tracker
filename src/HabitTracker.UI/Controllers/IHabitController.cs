@@ -12,5 +12,5 @@ public interface IHabitController
     HabitDto? GetHabit(Guid id);
     IReadOnlyList<HabitDto> GetHabits();
     bool IsUniqueHabitName(string name);
-    bool UpdateHabit(UpdateHabitRequest request);
+    ResponsePackage UpdateHabit(UpdateHabitRequest request);
 }

@@ -48,6 +48,10 @@ public class HabitService : IHabitService
     {
         return _repository.GetHabit(id);
     }
+    public Habit? GetHabitByName(string name)
+    {
+        return _repository.GetHabit(name);
+    }
 
     public List<Habit> GetHabits()
     {

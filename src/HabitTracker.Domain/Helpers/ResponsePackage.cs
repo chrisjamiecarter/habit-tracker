@@ -8,15 +8,17 @@ namespace HabitTracker.Domain.Helpers;
 public class ResponsePackage
 {
     #region Constructor
+
     public ResponsePackage()
     {
 
     }
-    #endregion
 
+    #endregion
     #region Properties
 
     public bool IsSuccess { get; set; }
     public string Message { get; set; }
+
     #endregion
 }

@@ -7,7 +7,7 @@ namespace HabitTracker.Infrastructure.Contexts;
 /// <summary>
 /// Ensures both the database and the schema is created. Then holds the connection string.
 /// </summary>
-internal class DbContext : IDbContext
+public class DbContext : IDbContext
 {
     #region Constructors
 
@@ -55,6 +55,5 @@ internal class DbContext : IDbContext
         command.CommandText = TableQueries.CreateHabitLogTable;
         command.ExecuteNonQuery();
     }
-
     #endregion
 }

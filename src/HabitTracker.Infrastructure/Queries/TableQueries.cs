@@ -16,7 +16,7 @@ internal static class TableQueries
             ,Measure TEXT NOT NULL
             ,IsActive INTEGER DEFAULT 1
         );
-        CREATE INDEX IF NOT EXISTS IX_Habit_HabitName ON Habit(Name);
+        CREATE INDEX IF NOT EXISTS IX_Habit_Name ON Habit(Name);
         ";
 
 

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using HabitTracker.Domain.Entities;
+using HabitTracker.WebUI.Validators;
 
 namespace HabitTracker.WebUI.Models;
 
@@ -26,7 +27,7 @@ public class HabitDto
     #region Properties
 
     public Guid Id { get; init; }
-
+    [UniqueName]
     public string Name { get; init; }
 
     public string Measure { get; init; }

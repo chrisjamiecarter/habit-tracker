@@ -3,7 +3,7 @@
 /// <summary>
 /// Contract for the database context.
 /// </summary>
-internal interface IDbContext
+public interface IDbContext
 {
     string ConnectionString { get; }
     void EnsureCreated();
