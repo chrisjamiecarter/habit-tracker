@@ -17,7 +17,7 @@ public class UniqueNameAttribute : ValidationAttribute
 
         if (string.IsNullOrWhiteSpace(habitName))
         {
-            return new ValidationResult("Habit name is required");
+            return new ValidationResult("Habit name is required.");
         }
 
         //update - check only if change name
@@ -34,6 +34,6 @@ public class UniqueNameAttribute : ValidationAttribute
             return ValidationResult.Success;
         }
 
-        return new ValidationResult($"Habit with name: '{habitName}' already exists");
+        return new ValidationResult($"Habit with name: '{habitName}' already exists.");
     }
 }

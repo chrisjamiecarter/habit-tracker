@@ -62,7 +62,7 @@ public class HabitController : IHabitController
         var habit = _service.GetHabit(request.Id);
         if (habit is null)
         {
-            return new ResponsePackage() { IsSuccess = false, Message= "Habit don't exist with this id in database" };
+            return new ResponsePackage() { IsSuccess = false, Message= "Habit don't exist with this id in database." };
         }
 
         if (habit.Name != request.Name)
@@ -70,7 +70,7 @@ public class HabitController : IHabitController
             var habitFromDb = _service.GetHabitByName(request.Name);
             if (habitFromDb != null)
             {
-                return new ResponsePackage { IsSuccess = false, Message = $"Habit with name: {habit.Name} already exist in database " };
+                return new ResponsePackage { IsSuccess = false, Message = $"Habit with name: {habit.Name} already exist in database ." };
             }
         }
 
@@ -80,7 +80,7 @@ public class HabitController : IHabitController
 
         var result = _service.UpdateHabit(habit);
         return result > 0
-            ? new ResponsePackage { IsSuccess = true, Message = $"Habit with name: {habit.Name} successfully updated" }
+            ? new ResponsePackage { IsSuccess = true, Message = $"Habit with name: {habit.Name} successfully updated." }
             : new ResponsePackage() { IsSuccess = false, Message = $"There was an error updating the habit with name: {habit.Name} in the database." };
     }
 
