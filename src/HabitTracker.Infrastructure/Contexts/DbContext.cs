@@ -7,7 +7,7 @@ namespace HabitTracker.Infrastructure.Contexts;
 /// <summary>
 /// Ensures both the database and the schema is created. Then holds the connection string.
 /// </summary>
-public class DbContext : IDbContext
+internal class DbContext : IDbContext
 {
     #region Constructors
 

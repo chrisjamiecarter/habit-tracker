@@ -10,7 +10,7 @@ namespace HabitTracker.Infrastructure.Repositories;
 /// <summary>
 /// Repository class that interacts with the Habit table only.
 /// </summary>
-public class HabitRepository : IHabitRepository
+internal class HabitRepository : IHabitRepository
 {
     #region Fields
 

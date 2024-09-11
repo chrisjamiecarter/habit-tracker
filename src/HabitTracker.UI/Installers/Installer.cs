@@ -13,7 +13,6 @@ public static class Installer
     public static IServiceCollection AddWebUI(this IServiceCollection services)
     {
         services.AddScoped<IHabitController, HabitController>();
-        services.AddScoped<IHabitRepository, HabitRepository>();
         services.AddScoped<IHabitLogController, HabitLogController>();
 
         return services;
