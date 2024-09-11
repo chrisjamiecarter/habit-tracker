@@ -1,5 +1,6 @@
 ﻿using HabitTracker.Application.Repositories;
 using HabitTracker.Domain.Entities;
+using HabitTracker.Domain.Helpers;
 
 namespace HabitTracker.Application.Services;
 
@@ -23,14 +24,33 @@ public class HabitService : IHabitService
     #endregion
     #region Methods
     
-    public int AddHabit(Habit habit)
+    public ResponsePackage AddHabit(Habit habit)
     {
-        return _repository.AddHabit(habit);
+        var habitFromDb = _repository.GetHabit(habit.Name);
+
+        if(habitFromDb != null)
+        {
+            return new ResponsePackage { IsSuccess = false, Message = $"Habit with name: {habit.Name} already exist in database " };
+        }
+
+        try
+        {
+            _repository.AddHabit(habit);
+            return new ResponsePackage { IsSuccess = true, Message = $"Habit with name: {habit.Name} successfully added" };
+        }
+        catch(Exception ex)
+        {
+            return new ResponsePackage { IsSuccess = false, Message = ex.Message };
+        }
     }
 
     public Habit? GetHabit(Guid id)
     {
         return _repository.GetHabit(id);
+    }
+    public Habit? GetHabitByName(string name)
+    {
+        return _repository.GetHabit(name);
     }
 
     public List<Habit> GetHabits()

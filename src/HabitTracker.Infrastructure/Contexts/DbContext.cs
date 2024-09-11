@@ -55,6 +55,5 @@ internal class DbContext : IDbContext
         command.CommandText = TableQueries.CreateHabitLogTable;
         command.ExecuteNonQuery();
     }
-
     #endregion
 }

@@ -1,4 +1,7 @@
-﻿using HabitTracker.WebUI.Controllers;
+﻿using HabitTracker.Application.Repositories;
+using HabitTracker.Infrastructure.Contexts;
+using HabitTracker.Infrastructure.Repositories;
+using HabitTracker.WebUI.Controllers;
 
 namespace HabitTracker.WebUI.Installers;
 
