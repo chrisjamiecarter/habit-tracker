@@ -1,6 +1,6 @@
 <div align="center">
-	<img src="./_resources/habit-tracker-mvc-logo.png" alt="habit tracker mvc logo" width="100px" />
-	<h1>Habit Tracker MVC</h1>
+	<img src="./_resources/habit-tracker-logo.png" alt="habit tracker logo" width="100px" />
+	<h1>Habit Tracker</h1>
 </div>
 
 Welcome to the Habit Tracker App!
@@ -40,10 +40,10 @@ The application includes features such as filtering habits based on their status
 ### Installation
 
 1. Clone the repository:
-	- `git clone https://github.com/chrisjamiecarter/habit-tracker-mvc.git`
+	- `git clone https://github.com/chrisjamiecarter/habit-tracker.git`
 
 2. Navigate to the project directory:
-	- `cd src\habit-tracker-mvc\HabitTracker.WebUI`
+	- `cd src\habit-tracker\HabitTracker.WebUI`
 
 3. Configure the application:
 	- Update the connection string in `appsettings.json` if you want to change the database path that sqlite will use.
